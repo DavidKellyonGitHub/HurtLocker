@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public abstract class ItemManager {
@@ -13,14 +14,18 @@ public abstract class ItemManager {
     private int price1Frequency;
     private int price2Frequency;
     private String groceryList = Main.readRawDataToString();
+    private ArrayList<String> allItems;
 
     protected ItemManager() throws Exception {
+        this.priceList = new ArrayList<>();
+        this.allItems = new ArrayList<>();
     }
 
     public void assignFields(){
         assignName();
         this.itemPattern = Pattern.compile("(?i:.*"+ getItemName() + ".*)");
         this.itemFrequency = itemFreq(itemPattern);
+        //parseItemList();
     }
 
     public void assignName(){
@@ -42,6 +47,13 @@ public abstract class ItemManager {
         }
             return itemFrequency;
     }
+
+//    public void parseItemList(){
+//        this.allItems = new ArrayList<String>(Arrays.asList(groceryList.split("##")));
+//        for(String item : allItems){
+//            if (item.startsWith())
+//        }
+//    }
 
     public Double parseItemPrices(Pattern pricesPattern){return null;}
 
