@@ -12,13 +12,35 @@ public abstract class ItemManager {
     private ArrayList<Double> priceList;
     private int price1Frequency;
     private int price2Frequency;
+    private String groceryList = Main.readRawDataToString();
+
+    protected ItemManager() throws Exception {
+    }
 
     public void assignFields(){
+        assignName();
         this.itemPattern = Pattern.compile("(?i:.*"+ getItemName() + ".*)");
+        this.itemFrequency = itemFreq(itemPattern);
+    }
+
+    public void assignName(){
+        if (this instanceof MilkManager){
+            this.setItemName("Milk");
+        } else if (this instanceof BreadManager){
+            this.setItemName("Bread");
+        } else if (this instanceof CookiesManager){
+            this.setItemName("Cookies");
+        } else if (this instanceof ApplesManager){
+            this.setItemName("Apples");
+        }
     }
 
     public int itemFreq(Pattern itemPattern){
-        return -1;
+        itemFrequency = 0;
+        while (itemPattern.matcher(groceryList).find()){
+            itemFrequency++;
+        }
+            return itemFrequency;
     }
 
     public Double parseItemPrices(Pattern pricesPattern){return null;}
@@ -115,5 +137,13 @@ public abstract class ItemManager {
 
     public void setPrice2Frequency(int price2Frequency) {
         this.price2Frequency = price2Frequency;
+    }
+
+    public String getGroceryList() {
+        return groceryList;
+    }
+
+    public void setGroceryList(String groceryList) {
+        this.groceryList = groceryList;
     }
 }
