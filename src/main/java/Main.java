@@ -7,13 +7,15 @@ public class Main {
 
     public String readRawDataToString() throws Exception{
         ClassLoader classLoader = getClass().getClassLoader();
-        String result = IOUtils.toString(classLoader.getResourceAsStream("RawData.txt"));
-        return result;
+        return IOUtils.toString(classLoader.getResourceAsStream("RawData.txt"));
     }
 
     public static void main(String[] args) throws Exception{
-        String output = (new Main()).readRawDataToString();
-        System.out.println(output);
+        String milk = (new ResultPrinter().formatItemResults(new MilkManager()));
+        String bread = (new ResultPrinter().formatItemResults(new BreadManager()));
+        String cookies = (new ResultPrinter().formatItemResults(new CookiesManager()));
+        String apples = (new ResultPrinter().formatItemResults(new ApplesManager()));
+        System.out.println(milk + bread + cookies + apples);
 
     }
 }

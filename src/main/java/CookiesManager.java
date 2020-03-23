@@ -1,2 +1,2 @@
-public class CookiesManager {
+public class CookiesManager extends ItemManager {
 }

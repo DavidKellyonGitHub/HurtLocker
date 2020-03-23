@@ -1,2 +1,3 @@
-public class ApplesManager {
-}
+public class ApplesManager extends ItemManager{
+    }
+
