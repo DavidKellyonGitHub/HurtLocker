@@ -13,8 +13,8 @@ public abstract class ItemManager {
     private int price1Frequency;
     private int price2Frequency;
 
-    public ItemManager(){
-        this.priceList = new ArrayList<>();
+    public void assignFields(){
+        this.itemPattern = Pattern.compile("(?i:.*"+ getItemName() + ".*)");
     }
 
     public int itemFreq(Pattern itemPattern){
